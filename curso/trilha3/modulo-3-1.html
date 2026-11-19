@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.1 — Sistema de prospecção fria e lista que converte | Do Zero ao Primeiro Cliente de IA</title>
+  <meta name="inema-course" content="vender-ia-primeiro-cliente">
+
+  <!-- ANTI-FOUC -->
+  <script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
+        } else {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'light') p.theme = 'claro';
+          else if (legacy === 'dark') p.theme = 'inema-dark';
+        }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = {
+        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'claro': { dark: false, attr: null, cs: 'light' },
+        'sepia': { dark: false, attr: 'sepia', cs: 'light' },
+        'foco': { dark: null, attr: 'foco', cs: null },
+        'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
+      };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark === true) html.classList.add('dark');
+      else if (t.dark === false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark') ? 'dark' : 'light'));
+      html.setAttribute('data-font', p.font || 'inter');
+      html.setAttribute('data-accent', p.accent || 'amber');
+      var s = html.style;
+      var scale = (+p.fontScale || 100);
+      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('font-size', scale + '%');
+      s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
+      s.setProperty('--lh-body', (+p.leading || 1.7).toString());
+      var fam = p.font === 'system' ? 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+        : (p.font === 'leitura' ? '"Atkinson Hyperlegible", "Inter", system-ui, sans-serif' : '"Inter", system-ui, sans-serif');
+      s.setProperty('--font-body', fam);
+      var ACC = { emerald: [152,76,45], blue: [217,91,60], purple: [258,90,66], amber: [38,92,50], teal: [174,72,41], rose: [350,89,60] };
+      var a = ACC[p.accent] || ACC.amber;
+      s.setProperty('--accent-h', a[0] + ''); s.setProperty('--accent-s', a[1] + '%'); s.setProperty('--accent-l', a[2] + '%');
+      s.setProperty('--accent', 'hsl(' + a[0] + ' ' + a[1] + '% ' + a[2] + '%)');
+    } catch (err) {
+      try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme = 'dark'; } catch (e) {}
+    }
+  })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+
+  <script type="application/json" data-inema-manifest>
+{"course":"vender-ia-primeiro-cliente","tracks":[
+{"n":"1","title":"Fundamentos","modules":[{"id":"1-1","title":"O guia não-ortodoxo de vender IA","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"A porta de entrada: consultoria, chatbot e nicho","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
+{"n":"2","title":"Auditoria e preço","modules":[{"id":"2-1","title":"Como conduzir uma auditoria de IA","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Precificação e o primeiro dólar","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
+{"n":"3","title":"Prospecção","modules":[{"id":"3-1","title":"Sistema de prospecção fria e lista que converte","topics":7,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Anatomia de uma ligação fria vencedora","topics":7,"href":"curso/trilha3/modulo-3-2.html"}]},
+{"n":"4","title":"Call e entrega","modules":[{"id":"4-1","title":"Da call marcada à call fechada","topics":7,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Entregar, fazer upsell e escalar","topics":7,"href":"curso/trilha4/modulo-4-2.html"}]}
+]}
+</script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    .skip { position: absolute; left: -9999px; top: 0; z-index: 100; background: #111827; color: #FACC15; padding: .5rem 1rem; border-radius: .5rem; }
+    .skip:focus { left: .5rem; top: .5rem; }
+    [id] { scroll-margin-top: 88px; }
+    :focus-visible { outline: 3px solid var(--accent-2, #38bdf8); outline-offset: 2px; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente-v72/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">💵</span>
+            <span class="font-bold text-lg hidden sm:inline">Primeiro Cliente</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+          <span class="text-neutral-600">-</span>
+          <a href="https://inema.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <button type="button" data-inema-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
+            <span aria-hidden="true">◷</span><span class="hidden md:inline">Minha jornada</span>
+            <span class="inema-journey-badge hidden" data-inema-journey-badge aria-hidden="true"></span>
+          </button>
+          <a href="../trilha1/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Auditoria e preço</span></a>
+          <a href="index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Prospecção</span></a>
+          <a href="../trilha4/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Call e entrega</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Breadcrumb">
+      <div class="flex items-center space-x-2 text-sm text-neutral-400">
+        <a href="../../index.html" class="hover:text-purple-400">Início</a>
+        <span>/</span>
+        <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+        <span>/</span>
+        <span class="text-purple-400">Módulo 3.1</span>
+      </div>
+    </nav>
+
+    <article id="modulo-3-1" data-inema-module="3-1" data-inema-track="3">
+    <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MODULO 3.1</span>
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4">📇 Sistema de prospecção fria e lista que converte</h1>
+        <p class="text-lg text-neutral-400 max-w-3xl" data-inema-block="m3-1-head">A parte que quase todo mundo pula — e por isso quase todo mundo continua sem cliente. Aqui você monta a lista das empresas certas, aprende a qualificar cada uma em três minutos, descobre o nome de quem decide e organiza uma rotina diária que cabe em duas horas.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">7</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">70</div><div class="text-xs text-neutral-400">Minutos</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Execução</div><div class="text-xs text-neutral-400">Tipo</div></div>
+        </div>
+        <div data-inema-meter="modulo:3-1" class="inema-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 3.1">
+          <div class="flex items-center gap-3">
+            <span class="text-purple-400 font-bold w-12" data-inema-meter-pct>0%</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-16" data-inema-meter-frac>0 de 7</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-10">
+
+        <div><!-- COLUNA PRINCIPAL -->
+
+        <!-- TOPICO 1 -->
+        <section id="topico-1" data-inema-topic="modulo-3-1#topico-1" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+              <h2 class="text-2xl font-bold">⚡ Por que ligação, e não e-mail</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-4 leading-relaxed" data-inema-block="m3-1-t1-p1">
+            Existem muitos canais de prospecção. A ligação é recomendada por um motivo específico e pouco romântico:
+            <strong class="text-purple-400">é o que devolve resposta em segundos</strong>. Se a sua oferta é ruim, você descobre hoje.
+            Se ela é boa, você descobre hoje. Nenhum outro canal comprime tanto o aprendizado.
+          </p>
+          <div class="bg-dark-700/40 border-l-4 border-purple-500/40 rounded-r-lg px-4 py-3 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-purple-400">Novo aqui?</strong> <strong>Prospecção fria</strong> é entrar em contato com alguém que não pediu para falar com você.
+            <strong>Ciclo de retorno</strong> é o tempo entre você tentar algo e descobrir se funcionou.
+            <strong>Filtro de recepção</strong> é a pessoa que atende antes do dono e cujo trabalho é barrar vendedores. Todos os três aparecem repetidamente nesta trilha.</p>
+          </div>
+          <div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+            <svg viewBox="0 0 1000 220" class="w-full h-auto" role="img" aria-label="Comparação de ciclos de retorno por canal: a ligação devolve resposta em segundos e é destacada em ciano; a mensagem direta em horas; o e-mail em dias; e a criação de conteúdo em meses. As barras crescem da esquerda para a direita indicando espera cada vez maior">
+              <defs>
+                <pattern id="m31-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#a855f7" opacity="0.12"/></pattern>
+                <filter id="m31-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect x="0" y="0" width="1000" height="220" fill="url(#m31-grid)"/>
+              <g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+                <text x="150" y="42" text-anchor="end" fill="#e9d5ff">ligação</text>
+                <g filter="url(#m31-glow)"><rect x="170" y="24" width="110" height="26" rx="7" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/></g>
+                <text x="300" y="42" fill="#bfe6ff">segundos</text>
+
+                <text x="150" y="90" text-anchor="end" fill="#e9d5ff">mensagem</text>
+                <rect x="170" y="72" width="230" height="26" rx="7" fill="#1a1230" stroke="#c084fc" stroke-width="2"/>
+                <text x="420" y="90" fill="#d8b4fe">horas</text>
+
+                <text x="150" y="138" text-anchor="end" fill="#e9d5ff">e-mail</text>
+                <rect x="170" y="120" width="420" height="26" rx="7" fill="#1a1230" stroke="#c084fc" stroke-width="2"/>
+                <text x="610" y="138" fill="#d8b4fe">dias</text>
+
+                <text x="150" y="186" text-anchor="end" fill="#e9d5ff">conteúdo</text>
+                <rect x="170" y="168" width="700" height="26" rx="7" fill="#1a1230" stroke="#c084fc" stroke-width="2"/>
+                <text x="890" y="186" fill="#d8b4fe">meses</text>
+              </g>
+            </svg>
+            <p class="text-xs text-neutral-500 mt-2 text-center">Compare o comprimento das barras: a primeira, em ciano, é curta de propósito. Quem está no zero não tem um problema de escala — tem um problema de aprendizado. E aprendizado precisa da barra mais curta.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+              <h4 class="font-bold text-purple-400 mb-4">✓ O que a ligação te dá</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Você ouve a objeção real, na hora, com o tom de voz junto.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Cada ligação é um mini-treino da conversa de venda que virá depois.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Não precisa configurar nada: telefone e lista, e você já está prospectando hoje.</span></li>
+              </ul>
+            </div>
+            <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+              <h4 class="font-bold text-red-400 mb-4">✗ Por que e-mail não serve agora</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Leva semanas só para preparar a infraestrutura de envio.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Resolve um problema de escala que você ainda não tem: você quer um cliente, não cem.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>O silêncio não ensina nada. Você não sabe se foi a oferta, o assunto ou o filtro de mensagens.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Ligue junto com outra pessoa que também está começando, cada um em um canto da chamada de vídeo. O bloco de ligações fica menos pesado, vocês corrigem o roteiro um do outro em tempo real e a taxa de desistência despenca.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 2 -->
+        <section id="topico-2" data-inema-topic="modulo-3-1#topico-2" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+              <h2 class="text-2xl font-bold">🗺️ Onde encontrar as empresas certas</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t2-p1">
+            Não precisa de base de dados paga. Uma <strong class="text-purple-400">ferramenta de busca por mapas</strong> resolve: você digita o seu nicho mais a cidade
+            e recebe dezenas de empresas com telefone, site e quantidade de avaliações. O segredo está em qual delas você escolhe.
+          </p>
+          <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎯</span> O ponto ideal de avaliações</h3>
+            <p class="text-neutral-300 mb-3">Procure empresas com <strong class="text-white">mais ou menos 10 a 50 avaliações</strong>. É uma regra guia, não uma lei — mas o raciocínio por trás vale sempre:</p>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Menos de 10:</strong> a empresa é pequena demais ou nova demais. Provavelmente não tem verba nem movimento.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Entre 10 e 50:</strong> operação funcionando, dono acessível, dor real de perder contato fora do horário.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Mais de 300:</strong> já é grande, provavelmente tem agência, e você não fala com quem decide.</span></li>
+            </ul>
+          </div>
+          <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-red-400 mb-2 flex items-center"><span class="mr-2">⚠️</span> Geografia muda tudo</h3>
+            <p class="text-neutral-300 text-sm">Antes de montar a lista, pergunte-se se o seu serviço faz sentido naquela região. Um exemplo real de outro setor: quem vende para empresas de reparo de telhados encontra demanda alta em regiões com temporal sazonal e quase nenhuma onde não há tempestades.
+            Ligar para a região errada gera uma resposta desanimadora que não tem nada a ver com você: "isso não me ajuda, aqui não acontece esse problema".</p>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Abra cada empresa candidata em uma aba nova enquanto rola a lista. Depois você percorre as abas uma a uma qualificando. Alternar entre buscar e qualificar a cada empresa é o que torna a montagem da lista insuportavelmente lenta.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 3 -->
+        <section id="topico-3" data-inema-topic="modulo-3-1#topico-3" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+              <h2 class="text-2xl font-bold">🔍 Qualificar uma empresa em três minutos</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t3-p1">
+            Qualificar é responder uma pergunta só: <strong class="text-purple-400">essa empresa perde dinheiro com o problema que eu resolvo?</strong>
+            Três checagens rápidas bastam, e nenhuma delas exige falar com ninguém.
+          </p>
+          <div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+            <svg viewBox="0 0 1000 240" class="w-full h-auto" role="img" aria-label="Três peneiras em sequência: da lista bruta de cem empresas, a primeira peneira verifica se tem site com movimento, a segunda se falta um canal de conversa, a terceira se dá para descobrir quem decide. No fim, restam cerca de vinte empresas qualificadas, destacadas em ciano">
+              <defs>
+                <pattern id="m31b-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#a855f7" opacity="0.12"/></pattern>
+                <filter id="m31b-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <marker id="m31b-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#c084fc"/></marker>
+              </defs>
+              <rect x="0" y="0" width="1000" height="240" fill="url(#m31b-grid)"/>
+              <g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+                <rect x="30" y="86" width="150" height="60" rx="12" fill="#1a1230" stroke="#c084fc" stroke-width="2"/><text x="105" y="112" text-anchor="middle" fill="#e9d5ff">lista bruta</text><text x="105" y="132" text-anchor="middle" fill="#d8b4fe" font-size="11">100 empresas</text>
+                <rect x="230" y="86" width="160" height="60" rx="12" fill="#1a1230" stroke="#c084fc" stroke-width="2"/><text x="310" y="112" text-anchor="middle" fill="#e9d5ff">tem movimento?</text><text x="310" y="132" text-anchor="middle" fill="#d8b4fe" font-size="11">site com visitas</text>
+                <rect x="440" y="86" width="160" height="60" rx="12" fill="#1a1230" stroke="#c084fc" stroke-width="2"/><text x="520" y="112" text-anchor="middle" fill="#e9d5ff">falta canal?</text><text x="520" y="132" text-anchor="middle" fill="#d8b4fe" font-size="11">só telefone e formulário</text>
+                <rect x="650" y="86" width="160" height="60" rx="12" fill="#1a1230" stroke="#c084fc" stroke-width="2"/><text x="730" y="112" text-anchor="middle" fill="#e9d5ff">acho o dono?</text><text x="730" y="132" text-anchor="middle" fill="#d8b4fe" font-size="11">nome de quem decide</text>
+                <g filter="url(#m31b-glow)"><rect x="855" y="86" width="120" height="60" rx="12" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/></g>
+                <text x="915" y="112" text-anchor="middle" fill="#bfe6ff">qualificadas</text><text x="915" y="132" text-anchor="middle" fill="#9ad6ff" font-size="11">~20</text>
+              </g>
+              <g fill="none" stroke="#c084fc" stroke-width="1.8" opacity="0.6">
+                <path d="M180,116 L226,116" marker-end="url(#m31b-ah)"/>
+                <path d="M390,116 L436,116" marker-end="url(#m31b-ah)"/>
+                <path d="M600,116 L646,116" marker-end="url(#m31b-ah)"/>
+                <path d="M810,116 L851,116" marker-end="url(#m31b-ah)"/>
+              </g>
+              <g font-family="Inter,sans-serif" font-size="11">
+                <text x="310" y="180" text-anchor="middle" fill="#c084fc">descarta ~30%</text>
+                <text x="520" y="180" text-anchor="middle" fill="#c084fc">descarta ~40%</text>
+                <text x="730" y="180" text-anchor="middle" fill="#c084fc">descarta ~10%</text>
+              </g>
+            </svg>
+            <p class="text-xs text-neutral-500 mt-2 text-center">Repare que cada peneira joga fora uma boa parte da lista: de cem empresas sobram vinte. Isso não é desperdício — é o que impede você de gastar a sua melhor energia ligando para quem nunca compraria.</p>
+          </div>
+          <div class="space-y-6 mb-6">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">O site recebe gente?</h4>
+                <p class="text-sm text-neutral-400">Use uma ferramenta de estimativa de tráfego. Não precisa de precisão: você só quer saber se são dezenas ou milhares de visitas por mês. Milhares é o cenário perfeito — muita gente entrando e poucas formas de falar com a empresa.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Falta um canal de conversa?</h4>
+                <p class="text-sm text-neutral-400">Abra o site. Tem janela de conversa? Tem número para mensagem? Se as únicas saídas são ligar e preencher formulário, você acabou de achar o argumento inteiro da sua ligação.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Dá para descobrir quem decide?</h4>
+                <p class="text-sm text-neutral-400">É o próximo tópico. Sem um nome, a chance de a ligação morrer na recepção é altíssima.</p></div>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">📐</span> A conta que justifica a sua ligação</h3>
+            <p class="text-neutral-300 mb-3">Um site de serviço razoável converte por volta de <strong class="text-white">2%</strong> dos visitantes em contato. Se a empresa tem mil visitas por mês e recebe dois contatos, a conversão é de 0,2% — dez vezes abaixo do esperado.</p>
+            <p class="text-neutral-300 text-sm">Você não precisa acusar ninguém de nada. Basta mostrar a conta e perguntar: "é possível que parte dessas pessoas simplesmente não tenha achado um jeito confortável de falar com vocês?"</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 4 -->
+        <section id="topico-4" data-inema-topic="modulo-3-1#topico-4" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+              <h2 class="text-2xl font-bold">👤 O nome de quem decide</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t4-p1">
+            Quem atende o telefone quase nunca é quem decide. E a pessoa que atende foi treinada para
+            <strong class="text-purple-400">barrar exatamente a sua ligação</strong> — o que é justo, o trabalho dela é proteger o tempo de quem manda.
+            A diferença entre "quero falar com o responsável" e "o Ricardo está?" é gigantesca.
+          </p>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+            <div class="p-4 border-b border-dark-600"><h3 class="font-semibold text-purple-400">Onde procurar o nome do dono</h3></div>
+            <div class="p-4">
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-purple-400 font-bold">1.</span><span><strong>Registro público de empresas.</strong> Consultas oficiais de cadastro empresarial costumam trazer o nome dos sócios e a data de abertura — que também serve de assunto.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400 font-bold">2.</span><span><strong>A página "quem somos" do site.</strong> Empresas familiares adoram contar a história. Está tudo lá.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400 font-bold">3.</span><span><strong>Rede social profissional.</strong> Busque pelo nome da empresa e filtre por cargos de direção.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400 font-bold">4.</span><span><strong>As respostas às avaliações.</strong> Em muitos negócios locais é o próprio dono quem responde os comentários, assinando o nome.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+              <h4 class="font-bold text-purple-400 mb-4">✓ Com o nome na mão</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Você soa como alguém que já tem assunto com a pessoa, não como vendedor aleatório.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Demonstra que você pesquisou — e isso, por si só, já é um argumento.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Se ele não estiver, você pergunta o melhor horário para encontrá-lo. Agora existe um plano.</span></li>
+              </ul>
+            </div>
+            <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+              <h4 class="font-bold text-red-400 mb-4">✗ Sem o nome</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Quero falar com o responsável" é a frase que a recepção mais ouve — e mais barra.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você acaba tentando vender para quem não pode comprar.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>A ligação vira desperdício de um número que talvez fosse bom.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Enquanto o dono não te disser para parar de ligar, você pode voltar. Não é insistência agressiva: é entender que ele estava no meio de um atendimento. Anote o horário sugerido pela recepção e respeite-o — quem liga no horário combinado ganha crédito.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 5 -->
+        <section id="topico-5" data-inema-topic="modulo-3-1#topico-5" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+              <h2 class="text-2xl font-bold">📊 A planilha e o código de cores</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t5-p1">
+            Não assine sistema de gestão de vendas nenhum agora. Uma planilha com colunas certas e um
+            <strong class="text-purple-400">código de cores</strong> faz o serviço melhor, porque você enxerga o dia inteiro numa tela só.
+          </p>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+            <div class="p-4 border-b border-dark-600"><h3 class="font-semibold text-purple-400">As colunas da planilha</h3></div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-sm text-left">
+                <thead class="text-neutral-400 border-b border-dark-600">
+                  <tr><th class="py-2 pr-4">Coluna</th><th class="py-2">Para que serve na hora da ligação</th></tr>
+                </thead>
+                <tbody class="text-neutral-300 divide-y divide-dark-600">
+                  <tr><td class="py-2 pr-4">Empresa</td><td class="py-2">Você fala o nome certo na primeira frase.</td></tr>
+                  <tr><td class="py-2 pr-4">Telefone</td><td class="py-2">De preferência o número principal, não o de agendamento.</td></tr>
+                  <tr><td class="py-2 pr-4">Nome do dono</td><td class="py-2">A chave para passar da recepção.</td></tr>
+                  <tr><td class="py-2 pr-4">Site</td><td class="py-2">Aberto em outra aba antes de discar.</td></tr>
+                  <tr><td class="py-2 pr-4">Avaliações</td><td class="py-2">Indica porte e movimento.</td></tr>
+                  <tr><td class="py-2 pr-4">Tráfego estimado</td><td class="py-2">O número que sustenta a conta do tópico 3.</td></tr>
+                  <tr><td class="py-2 pr-4">Lacuna do site</td><td class="py-2">"Sem janela de conversa", "só formulário longo" — o seu gancho.</td></tr>
+                  <tr><td class="py-2 pr-4">Status</td><td class="py-2">A cor. É o que você atualiza logo depois de desligar.</td></tr>
+                  <tr><td class="py-2 pr-4">Observações</td><td class="py-2">Uma linha do que ele falou. Vale ouro no retorno.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="w-full h-2 rounded-full mb-3" style="background:#eab308"></div><h4 class="font-bold text-neutral-200 text-sm mb-1">Amarelo</h4><p class="text-xs text-neutral-400">Não atendeu. Volta na lista de amanhã.</p></div>
+            <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="w-full h-2 rounded-full mb-3" style="background:#dc2626"></div><h4 class="font-bold text-neutral-200 text-sm mb-1">Vermelho</h4><p class="text-xs text-neutral-400">Não tem interesse. Sai da lista, sem drama.</p></div>
+            <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="w-full h-2 rounded-full mb-3" style="background:#2563eb"></div><h4 class="font-bold text-neutral-200 text-sm mb-1">Azul</h4><p class="text-xs text-neutral-400">Pediu para ligar depois. Anote o dia e a hora.</p></div>
+            <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="w-full h-2 rounded-full mb-3" style="background:#16a34a"></div><h4 class="font-bold text-neutral-200 text-sm mb-1">Verde</h4><p class="text-xs text-neutral-400">Reunião marcada. É o único número que importa.</p></div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Atualize a cor <em>antes</em> de discar o próximo número, nunca no fim do bloco. Cinco ligações depois você já não lembra qual era qual — e uma planilha desatualizada faz você ligar duas vezes para quem pediu para não ligar mais.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 6 -->
+        <section id="topico-6" data-inema-topic="modulo-3-1#topico-6" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+              <h2 class="text-2xl font-bold">🔁 A rotina diária que sustenta tudo</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t6-p1">
+            Sem rotina, prospecção vira surto: você liga trinta vezes numa segunda, se frustra e some por duas semanas.
+            A rotina abaixo é chata de propósito — <strong class="text-purple-400">e é ela que produz resultado</strong>.
+          </p>
+          <div class="space-y-6 mb-6">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Ligue para a lista do dia</h4>
+                <p class="text-sm text-neutral-400">A meta cheia é <strong>75 empresas por dia</strong>. Se você está começando e tem outro trabalho, comece com 20 — mas todos os dias úteis, sem exceção.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Disque duas vezes cada número</h4>
+                <p class="text-sm text-neutral-400">Não atendeu na primeira, ligue de novo em seguida. Uma parte relevante das pessoas atende na segunda tentativa, porque a primeira soou como chamada automática.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Atualize a cor imediatamente</h4>
+                <p class="text-sm text-neutral-400">Uma cor e uma linha de observação. Leva oito segundos e evita todo o retrabalho da semana seguinte.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Monte a lista de amanhã hoje</h4>
+                <p class="text-sm text-neutral-400">Fechando o bloco, adicione as empresas do dia seguinte. Começar o dia com a lista pronta elimina a desculpa mais comum de todas: "hoje eu ainda não tinha para quem ligar".</p></div>
+            </div>
+          </div>
+          <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-red-400 mb-2 flex items-center"><span class="mr-2">⚠️</span> Cuidado com as regras do seu mercado</h3>
+            <p class="text-neutral-300 text-sm">Prospecção por telefone é regulada em muitos lugares, com regras sobre horário, registro de recusa e cadastros de bloqueio, e multas relevantes por violação.
+            Antes de começar o volume, verifique o que se aplica ao seu país e ao seu setor. Respeitar quem pediu para não ser contatado é regra, não gentileza.</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">📈</span> A matemática que te acalma</h3>
+            <p class="text-neutral-300 mb-3">Com 75 ligações por dia, uma parte pequena vira conversa e uma parte menor ainda vira reunião. Não importa a taxa exata: o que importa é que o número é <strong class="text-white">previsível depois de duas semanas</strong>.</p>
+            <p class="text-neutral-300 text-sm">Quando você sabe quantas ligações produzem uma reunião, você para de sofrer com o "não". Ele deixa de ser rejeição e vira uma linha da sua planilha, a caminho do próximo sim.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 7 -->
+        <section id="topico-7" data-inema-topic="modulo-3-1#topico-7" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">7</span>
+              <h2 class="text-2xl font-bold">🎯 Copie e rode: seu manual de qualificação</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t7-p1">
+            Os critérios deste módulo são gerais. Este exercício os transforma em uma <strong class="text-purple-400">lista de checagem específica do seu nicho</strong>,
+            que você usa para peneirar sem pensar.
+          </p>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+            <div class="p-4 border-b border-dark-600"><h3 class="font-semibold text-purple-400">🎯 Copie e rode agora — critérios e planilha do seu nicho</h3></div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-400 mb-3"><strong class="text-neutral-300">Objetivo:</strong> ter uma lista de checagem de qualificação e a estrutura exata da sua planilha de ligações, prontas para usar amanhã de manhã.</p>
+              <pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">Você é meu operador de pré-venda. Vou prospectar por telefone empresas de um setor específico.
+
+MEU NICHO = &lt;setor&gt;
+MINHA REGIÃO = &lt;cidade ou estado&gt;
+O QUE EU VENDO = &lt;ex.: robô de conversa no site que responde dúvidas e captura contatos&gt;
+MEU PREÇO DE ENTRADA = &lt;valor&gt;
+
+Entregue:
+
+1. LISTA DE CHECAGEM DE QUALIFICAÇÃO: 8 checagens objetivas, feitas só olhando
+   informações públicas, que indicam se a empresa perde dinheiro com o problema
+   que eu resolvo. Cada uma com resposta sim/não e o peso dela (alto/médio/baixo).
+2. SINAIS DE DESCARTE: 5 sinais de que eu NÃO devo gastar ligação com aquela empresa.
+3. ONDE ENCONTRAR O DECISOR neste setor especificamente: liste 4 fontes públicas
+   e o que costuma estar disponível em cada uma na minha região.
+4. PLANILHA: as colunas exatas que eu devo criar, com um exemplo de linha preenchida.
+5. PARTICULARIDADES DO SETOR: sazonalidade, horários em que o dono está disponível,
+   vocabulário próprio, e regras ou restrições de contato que costumam existir.
+6. A CONTA DA CONVERSÃO: como eu explico, em duas frases, que o site dele
+   recebe visitas e converte pouco. Use números redondos de exemplo.
+
+Seja específico do setor. Se você não tiver base para afirmar algo, diga que é
+suposição em vez de inventar.</pre>
+              <p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">Como verificar:</strong> pegue três empresas reais do seu nicho e rode a lista de checagem do item 1 nelas. Se todas as três passarem ou todas as três forem descartadas, os critérios estão frouxos ou apertados demais — peça um ajuste dizendo o que aconteceu. Uma lista boa aprova mais ou menos uma em cada três.</p>
+            </div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Guarde o item 6 — a explicação da conta de conversão — em um lugar visível na sua mesa. É a frase que você vai repetir mais vezes em toda a Trilha 3, e ela precisa sair natural, não lida.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- CHECAGEM LEVE -->
+        <div data-inema-check="modulo-3-1#q1" class="inema-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
+          <p class="font-medium mb-4">Auto-verificação rápida (opcional): por que descobrir o nome do dono antes de ligar muda tanto o resultado?</p>
+          <div class="inema-check-options space-y-2">
+            <button type="button" data-inema-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque assim você pode vender direto para a recepção</button>
+            <button type="button" data-inema-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque pedir por um nome específico aumenta muito a chance de chegar a quem decide</button>
+            <button type="button" data-inema-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque é obrigatório por lei citar o nome do responsável</button>
+          </div>
+          <div data-inema-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- RESUMO FINAL -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🎓</span> Resumo do Módulo</h2>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Ligação é o canal do iniciante</strong><span class="text-neutral-400"> — porque devolve aprendizado em segundos.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Procure o porte certo</strong><span class="text-neutral-400"> — nem pequena demais, nem grande a ponto de você não falar com o dono.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Três peneiras, três minutos</strong><span class="text-neutral-400"> — movimento no site, canal faltando e nome de quem decide.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Planilha com cores e rotina diária</strong><span class="text-neutral-400"> — simplicidade e constância vencem ferramenta cara.</span></div></div>
+            </div>
+            <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+              <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+              <p class="text-neutral-300">3.2 - Anatomia de uma ligação fria vencedora — os primeiros quinze segundos, o roteiro completo palavra por palavra, como passar pela recepção e como marcar a reunião.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+              <a href="modulo-3-2.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+            </div>
+          </div>
+        </section>
+
+        <div data-inema-meter="trilha:3" class="inema-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
+          <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Trilha 3:</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+          </div>
+        </div>
+        <div data-inema-meter="curso" class="inema-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
+          <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Curso:</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+          </div>
+        </div>
+
+        </div><!-- /coluna principal -->
+
+        <!-- TOC STICKY -->
+        <nav data-inema-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
+          <p class="text-sm text-neutral-400 mb-2">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">7</span></p>
+          <ul class="space-y-1 text-sm">
+            <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">1. Por que ligação</a></li>
+            <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">2. Onde encontrar</a></li>
+            <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">3. Qualificar em 3 min</a></li>
+            <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">4. O nome de quem decide</a></li>
+            <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">5. Planilha e cores</a></li>
+            <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">6. A rotina diária</a></li>
+            <li><a href="#topico-7" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">7. Manual de qualificação</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    </article>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>💵 Do Zero ao Primeiro Cliente de IA — Módulo 3.1 · Trilha Prospecção · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => {
+        if (exp !== explanation) exp.classList.remove('active');
+      });
+      explanation.classList.toggle('active');
+      button.setAttribute('aria-expanded', explanation.classList.contains('active') ? 'true' : 'false');
+    }
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const htmlEl = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !htmlEl.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); htmlEl.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      htmlEl.classList.toggle('dark');
+      localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>
+    if (window.INEMA && typeof window.INEMA.init === 'function') { window.INEMA.init(); }
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.INEMA && INEMA.registerCheck) {
+        INEMA.registerCheck('modulo-3-1#q1', {
+          answer: 1,
+          explain: {
+            0: 'Não: quem atende o telefone quase nunca decide — vender para essa pessoa é gastar a ligação.',
+            1: 'Exato — pedir por um nome sinaliza que existe um assunto e reduz muito a barreira da recepção.',
+            2: 'Não: não é uma exigência legal, é uma vantagem prática.'
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>From Zero to Your First AI Client | INEMA.CLUB</title>
+<meta content="vender-ia-primeiro-cliente" name="inema-course"/>
+<!-- ANTI-FOUC: script bloqueante, PRIMEIRO no head, antes do Tailwind e de qualquer estilo -->
+<script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
+        } else {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'light') p.theme = 'claro';
+          else if (legacy === 'dark') p.theme = 'inema-dark';
+        }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = {
+        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'claro': { dark: false, attr: null, cs: 'light' },
+        'sepia': { dark: false, attr: 'sepia', cs: 'light' },
+        'foco': { dark: null, attr: 'foco', cs: null },
+        'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
+      };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark === true) html.classList.add('dark');
+      else if (t.dark === false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark') ? 'dark' : 'light'));
+      html.setAttribute('data-font', p.font || 'inter');
+      html.setAttribute('data-accent', p.accent || 'amber');
+      var s = html.style;
+      var scale = (+p.fontScale || 100);
+      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('font-size', scale + '%');
+      s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
+      s.setProperty('--lh-body', (+p.leading || 1.7).toString());
+      var fam = p.font === 'system' ? 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+        : (p.font === 'leitura' ? '"Atkinson Hyperlegible", "Inter", system-ui, sans-serif' : '"Inter", system-ui, sans-serif');
+      s.setProperty('--font-body', fam);
+      var ACC = { emerald: [152,76,45], blue: [217,91,60], purple: [258,90,66], amber: [38,92,50], teal: [174,72,41], rose: [350,89,60] };
+      var a = ACC[p.accent] || ACC.amber;
+      s.setProperty('--accent-h', a[0] + ''); s.setProperty('--accent-s', a[1] + '%'); s.setProperty('--accent-l', a[2] + '%');
+      s.setProperty('--accent', 'hsl(' + a[0] + ' ' + a[1] + '% ' + a[2] + '%)');
+    } catch (err) {
+      try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme = 'dark'; } catch (e) {}
+    }
+  })();
+  </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/learn.css" rel="stylesheet"/>
+<script data-inema-manifest="" type="application/json">
+{"course":"vender-ia-primeiro-cliente","tracks":[
+{"n":"1","title":"Fundamentos","modules":[{"id":"1-1","title":"O guia não-ortodoxo de vender IA","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"A porta de entrada: consultoria, chatbot e nicho","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
+{"n":"2","title":"Auditoria e preço","modules":[{"id":"2-1","title":"Como conduzir uma auditoria de IA","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Precificação e o primeiro dólar","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
+{"n":"3","title":"Prospecção","modules":[{"id":"3-1","title":"Sistema de prospecção fria e lista que converte","topics":7,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Anatomia de uma ligação fria vencedora","topics":7,"href":"curso/trilha3/modulo-3-2.html"}]},
+{"n":"4","title":"Call e entrega","modules":[{"id":"4-1","title":"Da call marcada à call fechada","topics":7,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Entregar, fazer upsell e escalar","topics":7,"href":"curso/trilha4/modulo-4-2.html"}]}
+]}
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    .skip { position: absolute; left: -9999px; top: 0; z-index: 100; background: #111827; color: #FACC15; padding: .5rem 1rem; border-radius: .5rem; }
+    .skip:focus { left: .5rem; top: .5rem; }
+    [id] { scroll-margin-top: 88px; }
+    :focus-visible { outline: 3px solid var(--accent-2, #38bdf8); outline-offset: 2px; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento das 4 trilhas */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:border-emerald-500\/30:hover { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:border-blue-500\/30:hover { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:border-purple-500\/30:hover { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .border-amber-500\/40 { border-color: rgba(217, 119, 6, 0.3); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:border-amber-500\/30:hover { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .bg-primary\/20 { background-color: rgba(161, 98, 7, 0.12); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+<link href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente/es/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">This course has a new version: more direct, with practice and a simulated conversation. <a href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente-v72/en/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Open the new version →</a></div><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="./" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<a class="skip" href="#conteudo">Skip to content</a>
+<!-- NAVIGATION (completa em todas as paginas) -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="index.html">
+<span class="text-2xl">💵</span>
+<span class="font-bold text-lg hidden sm:inline">First Customer</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+<span class="text-neutral-600">-</span>
+<a class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium" href="https://inema.pro" target="_blank">PRO</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" data-inema-journey-open="" title="Your course journey" type="button">
+<span aria-hidden="true">◷</span><span class="hidden md:inline">My journey</span>
+<span aria-hidden="true" class="inema-journey-badge hidden" data-inema-journey-badge=""></span>
+</button>
+<a class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../curso/trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../curso/trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Audit and pricing</span></a>
+<a class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../curso/trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Prospecting</span></a>
+<a class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../curso/trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Call and delivery</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main id="conteudo">
+<!-- HERO -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-16 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">
+          INTERACTIVE COURSE · AI SALES
+        </span>
+<h1 class="text-4xl sm:text-5xl font-bold mb-4">💵 From Zero to Your First AI Client</h1>
+<p class="text-lg text-neutral-400 max-w-3xl mb-2" data-inema-block="landing-hero-p1">
+          You know how to build an agent. What's missing is someone paying for it.
+          This course is the complete path from <strong class="text-amber-400">zero to the first payment</strong>:
+          choose the niche, diagnose the company, set the price, make the call, lead the meeting, and deliver.
+        </p>
+<p class="text-neutral-400 max-w-3xl mb-8" data-inema-block="landing-hero-p2">
+          New here? <strong>AI Audit</strong> is the diagnosis that shows where the company loses time and money.
+          <strong>Cold outreach</strong> is contacting someone who didn’t ask you to reach out.
+          <strong>Agent</strong> is the robot that talks and also performs tasks. Each term is defined in the course the first time it appears.
+        </p>
+<!-- Progresso do curso + continuar -->
+<div class="max-w-xl mb-8 bg-dark-800/60 rounded-xl border border-dark-600 p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-semibold text-neutral-300">Your course progress</span>
+<span class="text-xs text-neutral-500" data-inema-meter-frac="">0 of 56</span>
+</div>
+<div aria-label="Course progress" aria-valuemax="100" aria-valuemin="0" class="inema-meter" data-inema-meter="curso" role="progressbar">
+<div class="flex items-center gap-3">
+<span class="text-amber-400 font-bold text-lg w-14" data-inema-meter-pct="">0%</span>
+<div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill=""></div></div>
+</div>
+</div>
+<div class="mt-3 flex flex-wrap gap-3">
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 text-neutral-200 hover:bg-dark-600 transition-colors text-sm font-semibold" onclick="if(window.INEMA&amp;&amp;INEMA.resume){INEMA.resume()}else{location.href='curso/trilha1/modulo-1-1.html'}" type="button">
+<span aria-hidden="true">◷</span> Continue where I left off
+            </button>
+<a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm" href="#receitas">
+              View quick scripts
+            </a>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">4</div><div class="text-xs text-neutral-400">Tracks</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">8</div><div class="text-xs text-neutral-400">Modules</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">56</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~9h25</div><div class="text-xs text-neutral-400">Duration</div></div>
+</div>
+</div>
+</header>
+<!-- HERO SVG -->
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 overflow-hidden">
+<svg aria-label="Diagram: someone who knows how to build enters from the left, moves through five stages in cyan — choosing the niche, diagnosing, pricing, prospecting, and delivering — and exits on the right with their first paying client" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="land-grad" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop>
+</lineargradient>
+<filter height="180%" id="land-glow" width="180%" x="-40%" y="-40%">
+<fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+</filter>
+<pattern height="32" id="land-grid" patternunits="userSpaceOnUse" width="32">
+<circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle>
+</pattern>
+<marker id="land-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"></path></marker>
+<marker id="land-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#land-grid)" height="240" width="1000" x="0" y="0"></rect>
+<g fill="none" opacity="0.55" stroke="#fbbf24" stroke-width="1.8">
+<path d="M196,120 C300,120 320,38 452,38" marker-end="url(#land-ah)"></path>
+<path d="M196,120 C300,120 320,79 452,79" marker-end="url(#land-ah)"></path>
+<path d="M196,120 L452,120" marker-end="url(#land-ah)"></path>
+<path d="M196,120 C300,120 320,161 452,161" marker-end="url(#land-ah)"></path>
+<path d="M196,120 C300,120 320,202 452,202" marker-end="url(#land-ah)"></path>
+</g>
+<g fill="none" opacity="0.5" stroke="#38bdf8" stroke-width="1.8">
+<path d="M588,38  C700,38 720,120 800,120" marker-end="url(#land-ahc)"></path>
+<path d="M588,79  C700,79 720,120 800,120" marker-end="url(#land-ahc)"></path>
+<path d="M588,120 L800,120" marker-end="url(#land-ahc)"></path>
+<path d="M588,161 C700,161 720,120 800,120" marker-end="url(#land-ahc)"></path>
+<path d="M588,202 C700,202 720,120 800,120" marker-end="url(#land-ahc)"></path>
+</g>
+<g filter="url(#land-glow)">
+<rect fill="#2a1d06" height="68" rx="14" stroke="url(#land-grad)" stroke-width="2" width="156" x="40" y="86"></rect>
+</g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="19" font-weight="600" text-anchor="middle" x="118" y="114">You</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="12.5" text-anchor="middle" x="118" y="136">zero clients</text>
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<g class="wf-a"><rect fill="#0e1b26" height="32" rx="9" stroke="#38bdf8" stroke-width="2" width="136" x="452" y="22"></rect><text fill="#bfe6ff" text-anchor="middle" x="520" y="43">niche</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="32" rx="9" stroke="#38bdf8" stroke-width="2" width="136" x="452" y="63"></rect><text fill="#bfe6ff" text-anchor="middle" x="520" y="84">diagnosis</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="32" rx="9" stroke="#38bdf8" stroke-width="2" width="136" x="452" y="104"></rect><text fill="#bfe6ff" text-anchor="middle" x="520" y="125">price</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="32" rx="9" stroke="#38bdf8" stroke-width="2" width="136" x="452" y="145"></rect><text fill="#bfe6ff" text-anchor="middle" x="520" y="166">prospecting</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="32" rx="9" stroke="#38bdf8" stroke-width="2" width="136" x="452" y="186"></rect><text fill="#bfe6ff" text-anchor="middle" x="520" y="207">delivery</text></g>
+</g>
+<g filter="url(#land-glow)">
+<rect fill="#2a1d06" height="68" rx="14" stroke="url(#land-grad)" stroke-width="2" width="156" x="800" y="86"></rect>
+</g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="17" font-weight="600" text-anchor="middle" x="878" y="114">First customer</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="12.5" text-anchor="middle" x="878" y="136">actually paying</text>
+</svg>
+<p class="text-xs text-neutral-500 mt-2 text-center">Look at the five boxes in the middle: only one is technical. The other four involve decisions and conversations—and that's where you bridge the gap between knowing how to build and having a customer.</p>
+</div>
+</div>
+<!-- TRILHAS -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="trilhas">
+<h2 class="text-2xl font-bold mb-2">The 4 tracks</h2>
+<p class="text-neutral-400 mb-8 max-w-3xl">The course follows the real order of things when you’re getting started: first the roadmap, then diagnosis and pricing, then the calls, and finally the meeting and delivery. If you’ve never sold anything, start with Track 1.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-emerald-500/30 p-6 transition-colors" href="../curso/trilha1/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full">TRACK 1</span>
+<span class="text-xs text-neutral-500">2 modules · ~2h20</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">🗺️ Fundamentals</h3>
+<p class="text-neutral-400 text-sm mb-4">The offer pyramid, the four entry points, margin instead of revenue, niche selection, and the minimum setup.</p>
+<div aria-label="Track 1 progress" aria-valuemax="100" aria-valuemin="0" class="inema-meter" data-inema-meter="trilha:1" role="progressbar">
+<div class="flex items-center gap-2">
+<div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill=""></div></div>
+<span class="text-xs text-neutral-400 w-16" data-inema-meter-frac="">0 of 14</span>
+</div>
+</div>
+</a>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-6 transition-colors" href="../curso/trilha2/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full">TRACK 2</span>
+<span class="text-xs text-neutral-500">2 modules · ~2h25</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">🩺 Audit and pricing</h3>
+<p class="text-neutral-400 text-sm mb-4">Prior research, an intake form, drafted workflows, a standard deliverable, real price ranges, and the first payment.</p>
+<div aria-label="Track 2 progress" aria-valuemax="100" aria-valuemin="0" class="inema-meter" data-inema-meter="trilha:2" role="progressbar">
+<div class="flex items-center gap-2">
+<div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill=""></div></div>
+<span class="text-xs text-neutral-400 w-16" data-inema-meter-frac="">0 of 14</span>
+</div>
+</div>
+</a>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-6 transition-colors" href="../curso/trilha3/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full">TRACK 3</span>
+<span class="text-xs text-neutral-500">2 modules · ~2h15</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">📞 Prospecting</h3>
+<p class="text-neutral-400 text-sm mb-4">Build the list, qualify in three minutes, find the decision-maker, establish a daily routine, and use the complete cold-calling script.</p>
+<div aria-label="Track 3 progress" aria-valuemax="100" aria-valuemin="0" class="inema-meter" data-inema-meter="trilha:3" role="progressbar">
+<div class="flex items-center gap-2">
+<div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill=""></div></div>
+<span class="text-xs text-neutral-400 w-16" data-inema-meter-frac="">0 of 14</span>
+</div>
+</div>
+</a>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-6 transition-colors" href="../curso/trilha4/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full">TRACK 4</span>
+<span class="text-xs text-neutral-500">2 modules · ~2h25</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">🎬 Call and delivery</h3>
+<p class="text-neutral-400 text-sm mb-4">A prepared meeting, a calm conversation that closes, your first agent built piece by piece, and a 30-day plan.</p>
+<div aria-label="Track 4 progress" aria-valuemax="100" aria-valuemin="0" class="inema-meter" data-inema-meter="trilha:4" role="progressbar">
+<div class="flex items-center gap-2">
+<div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill=""></div></div>
+<span class="text-xs text-neutral-400 w-16" data-inema-meter-frac="">0 of 14</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- COMO FUNCIONA -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+<h2 class="text-2xl font-bold mb-8">How studying here works</h2>
+<div class="space-y-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="text-primary font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Read one topic at a time</h4>
+<p class="text-sm text-neutral-400 mb-2">Each topic includes a principle, a diagram that explains it in two seconds, and, in the practical modules, a ready-to-use prompt you can copy and run today.</p>
+<p class="text-neutral-300 text-sm">Highlight important passages by selecting the text, and add a question with one click exactly where it came up.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="text-primary font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Mark topics as read and track your progress</h4>
+<p class="text-neutral-300 text-sm">Your progress appears at three levels—module, track, and entire course—and is saved in your browser. No account required.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="text-primary font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Return to My Journey</h4>
+<p class="text-neutral-300 text-sm">The dashboard brings together where you left off, your open questions, and your notes—with export and import in <code class="font-mono text-xs">.json</code> to take your studies to another computer.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ROTEIROS COPY-RUN -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" id="receitas">
+<h2 class="text-2xl font-bold mb-2">Three things you can use today</h2>
+<p class="text-neutral-400 mb-6 max-w-3xl">Paste it into your favorite AI assistant, and replace what’s marked between <code class="font-mono text-xs">&lt; &gt;</code> and use the result in your next real conversation. The full version of each one is inside the tracks.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="p-6 border-b border-dark-600">
+<h3 class="text-lg font-semibold text-blue-400 mb-1">🔎 Research a company before the meeting</h3>
+<p class="text-sm text-neutral-400">Goal: show up with pain-point hypotheses and a rough plan instead of generic questions.</p>
+</div>
+<div class="p-6">
+<pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">Você é um consultor sênior de automação. Pesquise na web a empresa &lt;nome&gt; (site: &lt;endereço&gt;) e devolva:
+retrato do negócio, 6 hipóteses de dor operacional, 5 automações candidatas em ordem de impacto sobre esforço,
+sinais de que os dados NÃO estão organizados, um plano de 30/60/90 dias e 10 perguntas que só o dono pode responder.
+Marque com [SUPOSIÇÃO] tudo o que você inferiu sem fonte.</pre>
+<p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">How to verify:</strong> if there isn't a single assumption marked, the model is presenting a guess as fact—ask again and require it to mark the assumption.</p>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="p-6 border-b border-dark-600">
+<h3 class="text-lg font-semibold text-purple-400 mb-1">📞 Cold call opening</h3>
+<p class="text-sm text-neutral-400">Goal: get explicit permission to talk in under fifteen seconds, without misleading anyone.</p>
+</div>
+<div class="p-6">
+<pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">— Oi, é o &lt;seu nome&gt;. Falo com o &lt;nome do dono&gt;?
+— &lt;Nome&gt;, vou ser sincero: essa é uma ligação fria, eu quero te vender uma coisa.
+Você me dá quinze segundos pra eu dizer o que é, ou prefere desligar agora?
+— A gente ajuda &lt;tipo de empresa&gt; a conseguir mais clientes do próprio site, sem gastar mais em anúncio.
+— O melhor é ver funcionando. Meu objetivo era só ver se vale marcar quinze minutos. Faz sentido pra você?</pre>
+<p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">How to verify:</strong> Time yourself. If it takes more than fifteen seconds to get permission, cut words. And the last sentence must end with a question about the time—never an explanation.</p>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden">
+<div class="p-6 border-b border-dark-600">
+<h3 class="text-lg font-semibold text-amber-400 mb-1">💵 Calculate the cost of the problem</h3>
+<p class="text-sm text-neutral-400">Goal: turn the customer's pain point into a number before discussing any price.</p>
+</div>
+<div class="p-6">
+<pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">Meu cliente é &lt;tipo de empresa&gt; e o problema é &lt;a dor em duas frases&gt;. Minha solução é &lt;o que você entrega&gt;.
+1) Liste as perguntas que eu preciso fazer para calcular quanto esse problema custa por mês.
+2) Suponha valores plausíveis e MOSTRE A CONTA passo a passo.
+3) Proponha três faixas de preço — conservadora, provável e agressiva — justificadas como proporção do valor gerado.
+4) Escreva a frase que eu digo ao apresentar o preço, sem pedir desculpa.</pre>
+<p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">How to verify:</strong> the calculation needs to be reproducible on a calculator, line by line. If you can't redo it, the customer won't be able to either—and a calculation the customer doesn't understand won't support your price.</p>
+</div>
+</div>
+</section>
+<!-- FORMACAO VENDAS COM IA -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16" id="formacao">
+<h2 class="text-2xl font-bold mb-2">AI Sales Program</h2>
+<p class="text-neutral-400 mb-8 max-w-3xl">This course is part of a five-course program of independent courses. Each one stands on its own; together, they cover the path from your first client to a sustainable business.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-emerald-500/30 p-5 transition-colors" href="https://inematds.github.io/formacao-vendas-ia-oportunidades/">
+<div class="flex items-center justify-between mb-2">
+<span class="text-emerald-400 font-bold text-sm">COURSE 1</span>
+<span class="text-xs text-neutral-500">Opportunities</span>
+</div>
+<h3 class="font-semibold mb-1 group-hover:text-emerald-400 transition-colors">43 Ways to Make Money with AI</h3>
+<p class="text-xs text-neutral-400">The opportunity map and the funnel that turns each one into revenue.</p>
+</a>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-colors" href="https://inematds.github.io/formacao-vendas-ia-consultoria/">
+<div class="flex items-center justify-between mb-2">
+<span class="text-blue-400 font-bold text-sm">COURSE 2</span>
+<span class="text-xs text-neutral-500">Consulting</span>
+</div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">AI Consulting Playbook</h3>
+<p class="text-xs text-neutral-400">Diagnosing, solution design, pricing, and delivery of AI projects.</p>
+</a>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-colors" href="https://inematds.github.io/formacao-vendas-ia-fundamentos/">
+<div class="flex items-center justify-between mb-2">
+<span class="text-purple-400 font-bold text-sm">COURSE 3</span>
+<span class="text-xs text-neutral-500">Fundamentals</span>
+</div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">Fundamentals of Selling AI</h3>
+<p class="text-xs text-neutral-400">Mindset, confidence, closing, and ready-to-use scripts for your first sales.</p>
+</a>
+<div class="block bg-dark-800 rounded-xl border border-amber-500/40 p-5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-amber-400 font-bold text-sm">COURSE 4</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-semibold">You're here</span>
+</div>
+<h3 class="font-semibold mb-1 text-amber-400">From Zero to Your First AI Client</h3>
+<p class="text-xs text-neutral-400">Auditing, pricing, cold prospecting, and delivering the first project.</p>
+</div>
+<a class="group block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-colors md:col-span-2" href="https://inematds.github.io/formacao-vendas-ia-masterclass/">
+<div class="flex items-center justify-between mb-2">
+<span class="text-purple-400 font-bold text-sm">COURSE 5</span>
+<span class="text-xs text-neutral-500">Masterclass</span>
+</div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">Masterclass: How to Sell AI Solutions</h3>
+<p class="text-xs text-neutral-400">The complete picture in a single arc: mindset, offer, prospecting, and closing.</p>
+</a>
+</div>
+</section>
+<!-- RESUMO / CTA FINAL -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+<div class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-4">🎓 Where to start</h2>
+<div class="space-y-3 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-amber-400 mt-1">✓</span>
+<div><strong class="text-white">You know how to build but have never sold</strong><span class="text-neutral-400"> — start with Track 1: in just over two hours, you’ll leave with a portfolio of offers and a chosen niche.</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-amber-400 mt-1">✓</span>
+<div><strong class="text-white">You already talk to companies but don't know what to charge</strong><span class="text-neutral-400"> — go to Track 2: full diagnosis, real price ranges, and the phrase you say when you give the price.</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-amber-400 mt-1">✓</span>
+<div><strong class="text-white">You want a customer this week</strong><span class="text-neutral-400"> — open Track 3: list, call script, and practice simulator. Then go straight to Track 4.</span></div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-primary text-gray-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors" href="../curso/trilha1/index.html">
+            Start with Track 1 →
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../curso/trilha3/index.html">
+            Go straight to prospecting
+          </a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>💵 From Zero to Your First AI Client — Interactive course · AI Sales Training · 2026</p>
+</div>
+</footer>
+<!-- SCRIPTS: nucleo v1 -> learn.js -> init -->
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !htmlEl.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      htmlEl.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      htmlEl.classList.toggle('dark');
+      localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+<script src="../assets/learn.js"></script>
+<script>
+    if (window.INEMA && typeof window.INEMA.init === 'function') {
+      window.INEMA.init();
+    }
+  </script>
+</body>
+</html>
