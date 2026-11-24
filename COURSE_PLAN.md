@@ -1,6 +1,6 @@
 # Do Zero ao Primeiro Cliente de IA — plano do curso
 
-Curso interativo do INEMA.CLUB, parte da **Formação Vendas com IA**. Formato: 4 trilhas × 2 módulos × 7 tópicos = **56 tópicos**. Cor principal: âmbar.
+Curso interativo do ARCKHÉ AI, parte da **Formação Vendas com IA**. Formato: 4 trilhas × 2 módulos × 7 tópicos = **56 tópicos**. Cor principal: âmbar.
 
 Público: quem já sabe montar automações e agentes com IA, mas ainda não conseguiu o primeiro cliente pagante.
 

@@ -4,35 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trilha 3 — Prospecção | Do Zero ao Primeiro Cliente de IA</title>
-  <meta name="inema-course" content="vender-ia-primeiro-cliente">
+  <meta name="ARCKHÉ-course" content="vender-ia-primeiro-cliente">
 
   <!-- ANTI-FOUC -->
   <script>
   (function () {
     try {
       var html = document.documentElement;
-      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      var DEF = { theme: 'ARCKHÉ-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
       function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
       var p = clone(DEF);
       try {
-        var raw = localStorage.getItem('inema.prefs');
+        var raw = localStorage.getItem('ARCKHÉ.prefs');
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
         } else {
           var legacy = localStorage.getItem('theme');
           if (legacy === 'light') p.theme = 'claro';
-          else if (legacy === 'dark') p.theme = 'inema-dark';
+          else if (legacy === 'dark') p.theme = 'ARCKHÉ-dark';
         }
       } catch (e) { p = clone(DEF); }
       var THEMES = {
-        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'ARCKHÉ-dark': { dark: true, attr: null, cs: 'dark' },
         'claro': { dark: false, attr: null, cs: 'light' },
         'sepia': { dark: false, attr: 'sepia', cs: 'light' },
         'foco': { dark: null, attr: 'foco', cs: null },
         'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
       };
-      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      var t = THEMES[p.theme] || THEMES['ARCKHÉ-dark'];
       if (t.dark === true) html.classList.add('dark');
       else if (t.dark === false) html.classList.remove('dark');
       if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
@@ -41,7 +41,7 @@
       html.setAttribute('data-accent', p.accent || 'amber');
       var s = html.style;
       var scale = (+p.fontScale || 100);
-      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('--ARCKHÉ-font-scale', (scale / 100).toString());
       s.setProperty('font-size', scale + '%');
       s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
       s.setProperty('--lh-body', (+p.leading || 1.7).toString());
@@ -65,7 +65,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/learn.css">
 
-  <script type="application/json" data-inema-manifest>
+  <script type="application/json" data-ARCKHÉ-manifest>
 {"course":"vender-ia-primeiro-cliente","tracks":[
 {"n":"1","title":"Fundamentos","modules":[{"id":"1-1","title":"O guia não-ortodoxo de vender IA","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"A porta de entrada: consultoria, chatbot e nicho","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
 {"n":"2","title":"Auditoria e preço","modules":[{"id":"2-1","title":"Como conduzir uma auditoria de IA","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Precificação e o primeiro dólar","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
@@ -139,7 +139,7 @@
     }
   </style>
 </head>
-<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente-v72/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="ARCKHÉ-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://linnoff88-dev.github.io/ style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
@@ -152,14 +152,14 @@
             <span class="font-bold text-lg hidden sm:inline">Primeiro Cliente</span>
           </a>
           <span class="text-neutral-600">|</span>
-          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+          <a href="https://ARCKHÉ AI" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">ARCKHÉ AI</a>
           <span class="text-neutral-600">-</span>
-          <a href="https://inema.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
+          <a href="https://ARCKHÉ.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <button type="button" data-inema-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
+          <button type="button" data-ARCKHÉ-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
             <span aria-hidden="true">◷</span><span class="hidden md:inline">Minha jornada</span>
-            <span class="inema-journey-badge hidden" data-inema-journey-badge aria-hidden="true"></span>
+            <span class="ARCKHÉ-journey-badge hidden" data-ARCKHÉ-journey-badge aria-hidden="true"></span>
           </button>
           <a href="../trilha1/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
           <a href="../trilha2/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Auditoria e preço</span></a>
@@ -180,7 +180,7 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">TRILHA 3</span>
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">📞 Prospecção</h1>
-        <p class="text-lg text-neutral-400 max-w-3xl mb-2" data-inema-block="t3-hero-p1">
+        <p class="text-lg text-neutral-400 max-w-3xl mb-2" data-ARCKHÉ-block="t3-hero-p1">
           A parte que quase todo mundo pula — e por isso quase todo mundo continua sem cliente.
           Montar a lista certa, ligar todos os dias e <strong class="text-purple-400">saber exatamente o que dizer</strong> nos primeiros quinze segundos.
         </p>
@@ -192,11 +192,11 @@
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~2h15</div><div class="text-xs text-neutral-400">Duração</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
         </div>
-        <div data-inema-meter="trilha:3" class="inema-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
+        <div data-ARCKHÉ-meter="trilha:3" class="ARCKHÉ-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
           <div class="flex items-center gap-3">
-            <span class="text-purple-400 font-bold w-12" data-inema-meter-pct>0%</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-16" data-inema-meter-frac>0 de 14</span>
+            <span class="text-purple-400 font-bold w-12" data-ARCKHÉ-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-16" data-ARCKHÉ-meter-frac>0 de 14</span>
           </div>
         </div>
       </div>
@@ -296,7 +296,7 @@
       <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
 
       <!-- MODULO 3.1 -->
-      <div id="modulo-3-1" data-inema-module="3-1" data-inema-track="3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div id="modulo-3-1" data-ARCKHÉ-module="3-1" data-ARCKHÉ-track="3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
         <div class="p-6 border-b border-dark-600">
           <div class="flex items-center justify-between mb-2">
             <span class="text-purple-400 font-bold">3.1</span>
@@ -412,7 +412,7 @@
       </div>
 
       <!-- MODULO 3.2 -->
-      <div id="modulo-3-2" data-inema-module="3-2" data-inema-track="3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div id="modulo-3-2" data-ARCKHÉ-module="3-2" data-ARCKHÉ-track="3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
         <div class="p-6 border-b border-dark-600">
           <div class="flex items-center justify-between mb-2">
             <span class="text-purple-400 font-bold">3.2</span>
@@ -602,7 +602,7 @@
   </script>
   <script src="../../assets/learn.js"></script>
   <script>
-    if (window.INEMA && typeof window.INEMA.init === 'function') { window.INEMA.init(); }
+    if (window.ARCKHÉ && typeof window.ARCKHÉ.init === 'function') { window.ARCKHÉ.init(); }
   </script>
 </body>
 </html>

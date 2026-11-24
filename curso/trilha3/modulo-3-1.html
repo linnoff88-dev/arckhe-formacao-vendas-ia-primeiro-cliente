@@ -4,35 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Módulo 3.1 — Sistema de prospecção fria e lista que converte | Do Zero ao Primeiro Cliente de IA</title>
-  <meta name="inema-course" content="vender-ia-primeiro-cliente">
+  <meta name="ARCKHÉ-course" content="vender-ia-primeiro-cliente">
 
   <!-- ANTI-FOUC -->
   <script>
   (function () {
     try {
       var html = document.documentElement;
-      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      var DEF = { theme: 'ARCKHÉ-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
       function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
       var p = clone(DEF);
       try {
-        var raw = localStorage.getItem('inema.prefs');
+        var raw = localStorage.getItem('ARCKHÉ.prefs');
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
         } else {
           var legacy = localStorage.getItem('theme');
           if (legacy === 'light') p.theme = 'claro';
-          else if (legacy === 'dark') p.theme = 'inema-dark';
+          else if (legacy === 'dark') p.theme = 'ARCKHÉ-dark';
         }
       } catch (e) { p = clone(DEF); }
       var THEMES = {
-        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'ARCKHÉ-dark': { dark: true, attr: null, cs: 'dark' },
         'claro': { dark: false, attr: null, cs: 'light' },
         'sepia': { dark: false, attr: 'sepia', cs: 'light' },
         'foco': { dark: null, attr: 'foco', cs: null },
         'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
       };
-      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      var t = THEMES[p.theme] || THEMES['ARCKHÉ-dark'];
       if (t.dark === true) html.classList.add('dark');
       else if (t.dark === false) html.classList.remove('dark');
       if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
@@ -41,7 +41,7 @@
       html.setAttribute('data-accent', p.accent || 'amber');
       var s = html.style;
       var scale = (+p.fontScale || 100);
-      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('--ARCKHÉ-font-scale', (scale / 100).toString());
       s.setProperty('font-size', scale + '%');
       s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
       s.setProperty('--lh-body', (+p.leading || 1.7).toString());
@@ -65,7 +65,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/learn.css">
 
-  <script type="application/json" data-inema-manifest>
+  <script type="application/json" data-ARCKHÉ-manifest>
 {"course":"vender-ia-primeiro-cliente","tracks":[
 {"n":"1","title":"Fundamentos","modules":[{"id":"1-1","title":"O guia não-ortodoxo de vender IA","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"A porta de entrada: consultoria, chatbot e nicho","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
 {"n":"2","title":"Auditoria e preço","modules":[{"id":"2-1","title":"Como conduzir uma auditoria de IA","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Precificação e o primeiro dólar","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
@@ -134,7 +134,7 @@
     }
   </style>
 </head>
-<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente-v72/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="ARCKHÉ-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://linnoff88-dev.github.io/ style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
@@ -147,14 +147,14 @@
             <span class="font-bold text-lg hidden sm:inline">Primeiro Cliente</span>
           </a>
           <span class="text-neutral-600">|</span>
-          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+          <a href="https://ARCKHÉ AI" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">ARCKHÉ AI</a>
           <span class="text-neutral-600">-</span>
-          <a href="https://inema.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
+          <a href="https://ARCKHÉ.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <button type="button" data-inema-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
+          <button type="button" data-ARCKHÉ-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
             <span aria-hidden="true">◷</span><span class="hidden md:inline">Minha jornada</span>
-            <span class="inema-journey-badge hidden" data-inema-journey-badge aria-hidden="true"></span>
+            <span class="ARCKHÉ-journey-badge hidden" data-ARCKHÉ-journey-badge aria-hidden="true"></span>
           </button>
           <a href="../trilha1/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
           <a href="../trilha2/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Auditoria e preço</span></a>
@@ -180,23 +180,23 @@
       </div>
     </nav>
 
-    <article id="modulo-3-1" data-inema-module="3-1" data-inema-track="3">
+    <article id="modulo-3-1" data-ARCKHÉ-module="3-1" data-ARCKHÉ-track="3">
     <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MODULO 3.1</span>
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">📇 Sistema de prospecção fria e lista que converte</h1>
-        <p class="text-lg text-neutral-400 max-w-3xl" data-inema-block="m3-1-head">A parte que quase todo mundo pula — e por isso quase todo mundo continua sem cliente. Aqui você monta a lista das empresas certas, aprende a qualificar cada uma em três minutos, descobre o nome de quem decide e organiza uma rotina diária que cabe em duas horas.</p>
+        <p class="text-lg text-neutral-400 max-w-3xl" data-ARCKHÉ-block="m3-1-head">A parte que quase todo mundo pula — e por isso quase todo mundo continua sem cliente. Aqui você monta a lista das empresas certas, aprende a qualificar cada uma em três minutos, descobre o nome de quem decide e organiza uma rotina diária que cabe em duas horas.</p>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">7</div><div class="text-xs text-neutral-400">Tópicos</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">70</div><div class="text-xs text-neutral-400">Minutos</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Execução</div><div class="text-xs text-neutral-400">Tipo</div></div>
         </div>
-        <div data-inema-meter="modulo:3-1" class="inema-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 3.1">
+        <div data-ARCKHÉ-meter="modulo:3-1" class="ARCKHÉ-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 3.1">
           <div class="flex items-center gap-3">
-            <span class="text-purple-400 font-bold w-12" data-inema-meter-pct>0%</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-16" data-inema-meter-frac>0 de 7</span>
+            <span class="text-purple-400 font-bold w-12" data-ARCKHÉ-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-16" data-ARCKHÉ-meter-frac>0 de 7</span>
           </div>
         </div>
       </div>
@@ -208,16 +208,16 @@
         <div><!-- COLUNA PRINCIPAL -->
 
         <!-- TOPICO 1 -->
-        <section id="topico-1" data-inema-topic="modulo-3-1#topico-1" class="mb-16">
+        <section id="topico-1" data-ARCKHÉ-topic="modulo-3-1#topico-1" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
               <h2 class="text-2xl font-bold">⚡ Por que ligação, e não e-mail</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-4 leading-relaxed" data-inema-block="m3-1-t1-p1">
+          <p class="text-neutral-300 mb-4 leading-relaxed" data-ARCKHÉ-block="m3-1-t1-p1">
             Existem muitos canais de prospecção. A ligação é recomendada por um motivo específico e pouco romântico:
             <strong class="text-purple-400">é o que devolve resposta em segundos</strong>. Se a sua oferta é ruim, você descobre hoje.
             Se ela é boa, você descobre hoje. Nenhum outro canal comprime tanto o aprendizado.
@@ -277,23 +277,23 @@
             <p class="text-neutral-300 text-sm">Ligue junto com outra pessoa que também está começando, cada um em um canto da chamada de vídeo. O bloco de ligações fica menos pesado, vocês corrigem o roteiro um do outro em tempo real e a taxa de desistência despenca.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 2 -->
-        <section id="topico-2" data-inema-topic="modulo-3-1#topico-2" class="mb-16">
+        <section id="topico-2" data-ARCKHÉ-topic="modulo-3-1#topico-2" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
               <h2 class="text-2xl font-bold">🗺️ Onde encontrar as empresas certas</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t2-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t2-p1">
             Não precisa de base de dados paga. Uma <strong class="text-purple-400">ferramenta de busca por mapas</strong> resolve: você digita o seu nicho mais a cidade
             e recebe dezenas de empresas com telefone, site e quantidade de avaliações. O segredo está em qual delas você escolhe.
           </p>
@@ -316,23 +316,23 @@
             <p class="text-neutral-300 text-sm">Abra cada empresa candidata em uma aba nova enquanto rola a lista. Depois você percorre as abas uma a uma qualificando. Alternar entre buscar e qualificar a cada empresa é o que torna a montagem da lista insuportavelmente lenta.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 3 -->
-        <section id="topico-3" data-inema-topic="modulo-3-1#topico-3" class="mb-16">
+        <section id="topico-3" data-ARCKHÉ-topic="modulo-3-1#topico-3" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
               <h2 class="text-2xl font-bold">🔍 Qualificar uma empresa em três minutos</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t3-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t3-p1">
             Qualificar é responder uma pergunta só: <strong class="text-purple-400">essa empresa perde dinheiro com o problema que eu resolvo?</strong>
             Três checagens rápidas bastam, e nenhuma delas exige falar com ninguém.
           </p>
@@ -389,23 +389,23 @@
             <p class="text-neutral-300 text-sm">Você não precisa acusar ninguém de nada. Basta mostrar a conta e perguntar: "é possível que parte dessas pessoas simplesmente não tenha achado um jeito confortável de falar com vocês?"</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 4 -->
-        <section id="topico-4" data-inema-topic="modulo-3-1#topico-4" class="mb-16">
+        <section id="topico-4" data-ARCKHÉ-topic="modulo-3-1#topico-4" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
               <h2 class="text-2xl font-bold">👤 O nome de quem decide</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t4-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t4-p1">
             Quem atende o telefone quase nunca é quem decide. E a pessoa que atende foi treinada para
             <strong class="text-purple-400">barrar exatamente a sua ligação</strong> — o que é justo, o trabalho dela é proteger o tempo de quem manda.
             A diferença entre "quero falar com o responsável" e "o Ricardo está?" é gigantesca.
@@ -444,23 +444,23 @@
             <p class="text-neutral-300 text-sm">Enquanto o dono não te disser para parar de ligar, você pode voltar. Não é insistência agressiva: é entender que ele estava no meio de um atendimento. Anote o horário sugerido pela recepção e respeite-o — quem liga no horário combinado ganha crédito.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 5 -->
-        <section id="topico-5" data-inema-topic="modulo-3-1#topico-5" class="mb-16">
+        <section id="topico-5" data-ARCKHÉ-topic="modulo-3-1#topico-5" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
               <h2 class="text-2xl font-bold">📊 A planilha e o código de cores</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t5-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t5-p1">
             Não assine sistema de gestão de vendas nenhum agora. Uma planilha com colunas certas e um
             <strong class="text-purple-400">código de cores</strong> faz o serviço melhor, porque você enxerga o dia inteiro numa tela só.
           </p>
@@ -496,23 +496,23 @@
             <p class="text-neutral-300 text-sm">Atualize a cor <em>antes</em> de discar o próximo número, nunca no fim do bloco. Cinco ligações depois você já não lembra qual era qual — e uma planilha desatualizada faz você ligar duas vezes para quem pediu para não ligar mais.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 6 -->
-        <section id="topico-6" data-inema-topic="modulo-3-1#topico-6" class="mb-16">
+        <section id="topico-6" data-ARCKHÉ-topic="modulo-3-1#topico-6" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
               <h2 class="text-2xl font-bold">🔁 A rotina diária que sustenta tudo</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t6-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t6-p1">
             Sem rotina, prospecção vira surto: você liga trinta vezes numa segunda, se frustra e some por duas semanas.
             A rotina abaixo é chata de propósito — <strong class="text-purple-400">e é ela que produz resultado</strong>.
           </p>
@@ -549,23 +549,23 @@
             <p class="text-neutral-300 text-sm">Quando você sabe quantas ligações produzem uma reunião, você para de sofrer com o "não". Ele deixa de ser rejeição e vira uma linha da sua planilha, a caminho do próximo sim.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 7 -->
-        <section id="topico-7" data-inema-topic="modulo-3-1#topico-7" class="mb-16">
+        <section id="topico-7" data-ARCKHÉ-topic="modulo-3-1#topico-7" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">7</span>
               <h2 class="text-2xl font-bold">🎯 Copie e rode: seu manual de qualificação</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-1-t7-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-1-t7-p1">
             Os critérios deste módulo são gerais. Este exercício os transforma em uma <strong class="text-purple-400">lista de checagem específica do seu nicho</strong>,
             que você usa para peneirar sem pensar.
           </p>
@@ -604,21 +604,21 @@ suposição em vez de inventar.</pre>
             <p class="text-neutral-300 text-sm">Guarde o item 6 — a explicação da conta de conversão — em um lugar visível na sua mesa. É a frase que você vai repetir mais vezes em toda a Trilha 3, e ela precisa sair natural, não lida.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- CHECAGEM LEVE -->
-        <div data-inema-check="modulo-3-1#q1" class="inema-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
+        <div data-ARCKHÉ-check="modulo-3-1#q1" class="ARCKHÉ-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
           <p class="font-medium mb-4">Auto-verificação rápida (opcional): por que descobrir o nome do dono antes de ligar muda tanto o resultado?</p>
-          <div class="inema-check-options space-y-2">
-            <button type="button" data-inema-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque assim você pode vender direto para a recepção</button>
-            <button type="button" data-inema-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque pedir por um nome específico aumenta muito a chance de chegar a quem decide</button>
-            <button type="button" data-inema-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque é obrigatório por lei citar o nome do responsável</button>
+          <div class="ARCKHÉ-check-options space-y-2">
+            <button type="button" data-ARCKHÉ-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque assim você pode vender direto para a recepção</button>
+            <button type="button" data-ARCKHÉ-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque pedir por um nome específico aumenta muito a chance de chegar a quem decide</button>
+            <button type="button" data-ARCKHÉ-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Porque é obrigatório por lei citar o nome do responsável</button>
           </div>
-          <div data-inema-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
+          <div data-ARCKHÉ-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
         </div>
 
         <!-- RESUMO FINAL -->
@@ -642,32 +642,32 @@ suposição em vez de inventar.</pre>
           </div>
         </section>
 
-        <div data-inema-meter="trilha:3" class="inema-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
+        <div data-ARCKHÉ-meter="trilha:3" class="ARCKHÉ-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
           <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Trilha 3:</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-ARCKHÉ-meter-pct>0%</span>
           </div>
         </div>
-        <div data-inema-meter="curso" class="inema-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
+        <div data-ARCKHÉ-meter="curso" class="ARCKHÉ-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
           <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Curso:</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-ARCKHÉ-meter-pct>0%</span>
           </div>
         </div>
 
         </div><!-- /coluna principal -->
 
         <!-- TOC STICKY -->
-        <nav data-inema-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
-          <p class="text-sm text-neutral-400 mb-2">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">7</span></p>
+        <nav data-ARCKHÉ-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
+          <p class="text-sm text-neutral-400 mb-2">Seção <span class="ARCKHÉ-toc-pos">1</span> de <span class="ARCKHÉ-toc-total">7</span></p>
           <ul class="space-y-1 text-sm">
-            <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">1. Por que ligação</a></li>
-            <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">2. Onde encontrar</a></li>
-            <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">3. Qualificar em 3 min</a></li>
-            <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">4. O nome de quem decide</a></li>
-            <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">5. Planilha e cores</a></li>
-            <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">6. A rotina diária</a></li>
-            <li><a href="#topico-7" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">7. Manual de qualificação</a></li>
+            <li><a href="#topico-1" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">1. Por que ligação</a></li>
+            <li><a href="#topico-2" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">2. Onde encontrar</a></li>
+            <li><a href="#topico-3" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">3. Qualificar em 3 min</a></li>
+            <li><a href="#topico-4" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">4. O nome de quem decide</a></li>
+            <li><a href="#topico-5" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">5. Planilha e cores</a></li>
+            <li><a href="#topico-6" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">6. A rotina diária</a></li>
+            <li><a href="#topico-7" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">7. Manual de qualificação</a></li>
           </ul>
         </nav>
       </div>
@@ -708,10 +708,10 @@ suposição em vez de inventar.</pre>
   </script>
   <script src="../../assets/learn.js"></script>
   <script>
-    if (window.INEMA && typeof window.INEMA.init === 'function') { window.INEMA.init(); }
+    if (window.ARCKHÉ && typeof window.ARCKHÉ.init === 'function') { window.ARCKHÉ.init(); }
     window.addEventListener('DOMContentLoaded', function () {
-      if (window.INEMA && INEMA.registerCheck) {
-        INEMA.registerCheck('modulo-3-1#q1', {
+      if (window.ARCKHÉ && ARCKHÉ.registerCheck) {
+        ARCKHÉ.registerCheck('modulo-3-1#q1', {
           answer: 1,
           explain: {
             0: 'Não: quem atende o telefone quase nunca decide — vender para essa pessoa é gastar a ligação.',

@@ -4,35 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Módulo 3.2 — Anatomia de uma ligação fria vencedora | Do Zero ao Primeiro Cliente de IA</title>
-  <meta name="inema-course" content="vender-ia-primeiro-cliente">
+  <meta name="ARCKHÉ-course" content="vender-ia-primeiro-cliente">
 
   <!-- ANTI-FOUC -->
   <script>
   (function () {
     try {
       var html = document.documentElement;
-      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      var DEF = { theme: 'ARCKHÉ-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
       function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
       var p = clone(DEF);
       try {
-        var raw = localStorage.getItem('inema.prefs');
+        var raw = localStorage.getItem('ARCKHÉ.prefs');
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
         } else {
           var legacy = localStorage.getItem('theme');
           if (legacy === 'light') p.theme = 'claro';
-          else if (legacy === 'dark') p.theme = 'inema-dark';
+          else if (legacy === 'dark') p.theme = 'ARCKHÉ-dark';
         }
       } catch (e) { p = clone(DEF); }
       var THEMES = {
-        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'ARCKHÉ-dark': { dark: true, attr: null, cs: 'dark' },
         'claro': { dark: false, attr: null, cs: 'light' },
         'sepia': { dark: false, attr: 'sepia', cs: 'light' },
         'foco': { dark: null, attr: 'foco', cs: null },
         'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
       };
-      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      var t = THEMES[p.theme] || THEMES['ARCKHÉ-dark'];
       if (t.dark === true) html.classList.add('dark');
       else if (t.dark === false) html.classList.remove('dark');
       if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
@@ -41,7 +41,7 @@
       html.setAttribute('data-accent', p.accent || 'amber');
       var s = html.style;
       var scale = (+p.fontScale || 100);
-      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('--ARCKHÉ-font-scale', (scale / 100).toString());
       s.setProperty('font-size', scale + '%');
       s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
       s.setProperty('--lh-body', (+p.leading || 1.7).toString());
@@ -65,7 +65,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/learn.css">
 
-  <script type="application/json" data-inema-manifest>
+  <script type="application/json" data-ARCKHÉ-manifest>
 {"course":"vender-ia-primeiro-cliente","tracks":[
 {"n":"1","title":"Fundamentos","modules":[{"id":"1-1","title":"O guia não-ortodoxo de vender IA","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"A porta de entrada: consultoria, chatbot e nicho","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
 {"n":"2","title":"Auditoria e preço","modules":[{"id":"2-1","title":"Como conduzir uma auditoria de IA","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Precificação e o primeiro dólar","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
@@ -134,7 +134,7 @@
     }
   </style>
 </head>
-<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://inematds.github.io/formacao-vendas-ia-primeiro-cliente-v72/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="ARCKHÉ-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://linnoff88-dev.github.io/ style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
@@ -147,14 +147,14 @@
             <span class="font-bold text-lg hidden sm:inline">Primeiro Cliente</span>
           </a>
           <span class="text-neutral-600">|</span>
-          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+          <a href="https://ARCKHÉ AI" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">ARCKHÉ AI</a>
           <span class="text-neutral-600">-</span>
-          <a href="https://inema.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
+          <a href="https://ARCKHÉ.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <button type="button" data-inema-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
+          <button type="button" data-ARCKHÉ-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
             <span aria-hidden="true">◷</span><span class="hidden md:inline">Minha jornada</span>
-            <span class="inema-journey-badge hidden" data-inema-journey-badge aria-hidden="true"></span>
+            <span class="ARCKHÉ-journey-badge hidden" data-ARCKHÉ-journey-badge aria-hidden="true"></span>
           </button>
           <a href="../trilha1/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
           <a href="../trilha2/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Auditoria e preço</span></a>
@@ -180,23 +180,23 @@
       </div>
     </nav>
 
-    <article id="modulo-3-2" data-inema-module="3-2" data-inema-track="3">
+    <article id="modulo-3-2" data-ARCKHÉ-module="3-2" data-ARCKHÉ-track="3">
     <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MODULO 3.2</span>
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">📞 Anatomia de uma ligação fria vencedora</h1>
-        <p class="text-lg text-neutral-400 max-w-3xl" data-inema-block="m3-2-head">A ligação inteira dissecada: o objetivo único, os quinze segundos que decidem tudo, a frase que desarma a objeção antes de ela nascer, o que dizer quando a recepção atende e como fechar o horário. Com o roteiro completo, pronto para imprimir e usar hoje.</p>
+        <p class="text-lg text-neutral-400 max-w-3xl" data-ARCKHÉ-block="m3-2-head">A ligação inteira dissecada: o objetivo único, os quinze segundos que decidem tudo, a frase que desarma a objeção antes de ela nascer, o que dizer quando a recepção atende e como fechar o horário. Com o roteiro completo, pronto para imprimir e usar hoje.</p>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">7</div><div class="text-xs text-neutral-400">Tópicos</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">65</div><div class="text-xs text-neutral-400">Minutos</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
           <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Roteiro</div><div class="text-xs text-neutral-400">Tipo</div></div>
         </div>
-        <div data-inema-meter="modulo:3-2" class="inema-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 3.2">
+        <div data-ARCKHÉ-meter="modulo:3-2" class="ARCKHÉ-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 3.2">
           <div class="flex items-center gap-3">
-            <span class="text-purple-400 font-bold w-12" data-inema-meter-pct>0%</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-16" data-inema-meter-frac>0 de 7</span>
+            <span class="text-purple-400 font-bold w-12" data-ARCKHÉ-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-16" data-ARCKHÉ-meter-frac>0 de 7</span>
           </div>
         </div>
       </div>
@@ -208,16 +208,16 @@
         <div><!-- COLUNA PRINCIPAL -->
 
         <!-- TOPICO 1 -->
-        <section id="topico-1" data-inema-topic="modulo-3-2#topico-1" class="mb-16">
+        <section id="topico-1" data-ARCKHÉ-topic="modulo-3-2#topico-1" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
               <h2 class="text-2xl font-bold">🎯 Você não vende o produto, vende a reunião</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-4 leading-relaxed" data-inema-block="m3-2-t1-p1">
+          <p class="text-neutral-300 mb-4 leading-relaxed" data-ARCKHÉ-block="m3-2-t1-p1">
             Este é o erro mais caro de toda a prospecção por telefone, e é cometido por praticamente todo iniciante:
             tentar vender a solução na ligação. <strong class="text-purple-400">A ligação tem um único objetivo: marcar a reunião.</strong>
             O produto é vendido lá, com a pessoa sentada, com tela compartilhada e atenção inteira.
@@ -251,23 +251,23 @@
             <p class="text-neutral-300 text-sm">Ninguém compra nada nessa situação — e é por isso que insistir em vender ali é desperdício. Marcar um horário em que ela pode prestar atenção não é adiar a venda: é a única forma de a venda existir.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 2 -->
-        <section id="topico-2" data-inema-topic="modulo-3-2#topico-2" class="mb-16">
+        <section id="topico-2" data-ARCKHÉ-topic="modulo-3-2#topico-2" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
               <h2 class="text-2xl font-bold">⏱️ Os primeiros quinze segundos</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t2-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t2-p1">
             Tudo se decide aqui, e a receita é contraintuitiva: <strong class="text-purple-400">seja honesto sobre o que é a ligação e peça permissão</strong>.
             Ninguém gosta de ser vendido sem ter concordado em ouvir. Quando a pessoa concede os quinze segundos, ela abre a cabeça — e passa a escutar de verdade.
           </p>
@@ -327,23 +327,23 @@ ou prefere desligar agora?
             <p class="text-neutral-300 text-sm">Soar humano vale mais que soar profissional. Dizer "olha, eu sou novo nisso, pega leve comigo" funciona surpreendentemente bem — a pessoa já recebeu dezenas de ligações ensaiadas hoje, e nenhuma delas soou como gente.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 3 -->
-        <section id="topico-3" data-inema-topic="modulo-3-2#topico-3" class="mb-16">
+        <section id="topico-3" data-ARCKHÉ-topic="modulo-3-2#topico-3" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
               <h2 class="text-2xl font-bold">🧲 O pitch: resultado e curiosidade</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t3-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t3-p1">
             Ganhou os quinze segundos. Agora vem a frase mais importante da ligação inteira — e ela precisa fazer duas coisas ao mesmo tempo:
             <strong class="text-purple-400">prometer um resultado e derrubar a suposição errada</strong> que a pessoa já fez sobre você.
           </p>
@@ -383,23 +383,23 @@ a conseguir mais clientes do próprio site, sem gastar mais em anúncio.</pre>
             </div>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 4 -->
-        <section id="topico-4" data-inema-topic="modulo-3-2#topico-4" class="mb-16">
+        <section id="topico-4" data-ARCKHÉ-topic="modulo-3-2#topico-4" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
               <h2 class="text-2xl font-bold">🤐 Segure a informação (de propósito)</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t4-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t4-p1">
             A pergunta vem quase sempre: <em>"mas como assim? o que exatamente vocês fazem?"</em>.
             E aqui a maioria comete o erro final: explica. Explicar por telefone <strong class="text-purple-400">gasta a curiosidade que você acabou de criar</strong>
             e transforma a ligação numa decisão apressada, tomada por alguém distraído.
@@ -431,23 +431,23 @@ Faz sentido pra você?</pre>
             Se ainda assim ele insistir no e-mail, mande, marque azul na planilha e volte em uma semana. Alguns viram sim no segundo contato.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 5 -->
-        <section id="topico-5" data-inema-topic="modulo-3-2#topico-5" class="mb-16">
+        <section id="topico-5" data-ARCKHÉ-topic="modulo-3-2#topico-5" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
               <h2 class="text-2xl font-bold">🚪 Quando quem atende não é quem decide</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t5-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t5-p1">
             Vai acontecer na maioria das ligações. E a regra é simples: <strong class="text-purple-400">você não vende para quem atende</strong>,
             por melhor que seja a sua oferta. O trabalho dessa pessoa é filtrar ligações como a sua. Trate-a com respeito e seja honesto — funciona muito melhor que disfarçar.
           </p>
@@ -477,23 +477,23 @@ o gasto com anúncio, e que eu ligo de volta &lt;dia e hora&gt;.</pre>
             <p class="text-neutral-300 text-sm">Anote o nome de quem atendeu. Na próxima ligação, cumprimente pelo nome: "oi, Camila, é o João de novo — o Ricardo já chegou?". A ligação deixa de ser fria na segunda tentativa, e a recepção passa a te ajudar em vez de te barrar.</p>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 6 -->
-        <section id="topico-6" data-inema-topic="modulo-3-2#topico-6" class="mb-16">
+        <section id="topico-6" data-ARCKHÉ-topic="modulo-3-2#topico-6" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
               <h2 class="text-2xl font-bold">📅 Fechar o horário e desligar</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t6-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t6-p1">
             Ele disse que faz sentido. Agora não estrague: <strong class="text-purple-400">ofereça dois horários e escolha os dois</strong>.
             Perguntar "quando você pode?" devolve a decisão para alguém ocupado — e a resposta mais provável é "me manda mensagem depois", que na prática é um não.
           </p>
@@ -529,23 +529,23 @@ o gasto com anúncio, e que eu ligo de volta &lt;dia e hora&gt;.</pre>
             </ul>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- TOPICO 7 -->
-        <section id="topico-7" data-inema-topic="modulo-3-2#topico-7" class="mb-16">
+        <section id="topico-7" data-ARCKHÉ-topic="modulo-3-2#topico-7" class="mb-16">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
               <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">7</span>
               <h2 class="text-2xl font-bold">🎯 Copie e rode: seu roteiro e o treino</h2>
             </div>
-            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+            <button type="button" data-ARCKHÉ-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
               <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
           </div>
-          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m3-2-t7-p1">
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-ARCKHÉ-block="m3-2-t7-p1">
             Junte tudo em um roteiro do seu nicho, com as objeções do seu setor — e depois treine com um simulador antes de gastar
             um número real. <strong class="text-purple-400">Vinte minutos de treino poupam vinte ligações queimadas.</strong>
           </p>
@@ -605,21 +605,21 @@ Comece agora dizendo apenas "Alô?".</pre>
             </div>
           </div>
           <div class="flex justify-start mt-6">
-            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
-              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
-              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+            <button type="button" data-ARCKHÉ-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 hover:bg-purple-500/30 transition-colors">
+              <span class="ARCKHÉ-ico-todo" aria-hidden="true">○</span><span class="ARCKHÉ-ico-done hidden" aria-hidden="true">●</span>
+              <span class="ARCKHÉ-label-todo">Marcar como lido</span><span class="ARCKHÉ-label-done hidden">Lido</span></button>
           </div>
         </section>
 
         <!-- CHECAGEM LEVE -->
-        <div data-inema-check="modulo-3-2#q1" class="inema-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
+        <div data-ARCKHÉ-check="modulo-3-2#q1" class="ARCKHÉ-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
           <p class="font-medium mb-4">Auto-verificação rápida (opcional): o dono pergunta "mas como exatamente isso funciona?". O que você faz?</p>
-          <div class="inema-check-options space-y-2">
-            <button type="button" data-inema-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Explica em detalhes, aproveitando o interesse</button>
-            <button type="button" data-inema-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Diz que o melhor é ver funcionando e propõe quinze minutos, com dois horários</button>
-            <button type="button" data-inema-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Oferece mandar um material por e-mail para ele analisar com calma</button>
+          <div class="ARCKHÉ-check-options space-y-2">
+            <button type="button" data-ARCKHÉ-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Explica em detalhes, aproveitando o interesse</button>
+            <button type="button" data-ARCKHÉ-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Diz que o melhor é ver funcionando e propõe quinze minutos, com dois horários</button>
+            <button type="button" data-ARCKHÉ-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Oferece mandar um material por e-mail para ele analisar com calma</button>
           </div>
-          <div data-inema-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
+          <div data-ARCKHÉ-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
         </div>
 
         <!-- RESUMO FINAL -->
@@ -643,32 +643,32 @@ Comece agora dizendo apenas "Alô?".</pre>
           </div>
         </section>
 
-        <div data-inema-meter="trilha:3" class="inema-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
+        <div data-ARCKHÉ-meter="trilha:3" class="ARCKHÉ-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 3">
           <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Trilha 3:</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-ARCKHÉ-meter-pct>0%</span>
           </div>
         </div>
-        <div data-inema-meter="curso" class="inema-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
+        <div data-ARCKHÉ-meter="curso" class="ARCKHÉ-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
           <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Curso:</span>
-            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
-            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+            <div class="ARCKHÉ-bar flex-1"><div class="ARCKHÉ-bar__fill" data-ARCKHÉ-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-ARCKHÉ-meter-pct>0%</span>
           </div>
         </div>
 
         </div><!-- /coluna principal -->
 
         <!-- TOC STICKY -->
-        <nav data-inema-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
-          <p class="text-sm text-neutral-400 mb-2">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">7</span></p>
+        <nav data-ARCKHÉ-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
+          <p class="text-sm text-neutral-400 mb-2">Seção <span class="ARCKHÉ-toc-pos">1</span> de <span class="ARCKHÉ-toc-total">7</span></p>
           <ul class="space-y-1 text-sm">
-            <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">1. Vender a reunião</a></li>
-            <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">2. Os 15 segundos</a></li>
-            <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">3. O pitch</a></li>
-            <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">4. Segure a informação</a></li>
-            <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">5. A recepção</a></li>
-            <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">6. Fechar o horário</a></li>
-            <li><a href="#topico-7" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">7. Roteiro e treino</a></li>
+            <li><a href="#topico-1" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">1. Vender a reunião</a></li>
+            <li><a href="#topico-2" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">2. Os 15 segundos</a></li>
+            <li><a href="#topico-3" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">3. O pitch</a></li>
+            <li><a href="#topico-4" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">4. Segure a informação</a></li>
+            <li><a href="#topico-5" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">5. A recepção</a></li>
+            <li><a href="#topico-6" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">6. Fechar o horário</a></li>
+            <li><a href="#topico-7" class="ARCKHÉ-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10">7. Roteiro e treino</a></li>
           </ul>
         </nav>
       </div>
@@ -709,10 +709,10 @@ Comece agora dizendo apenas "Alô?".</pre>
   </script>
   <script src="../../assets/learn.js"></script>
   <script>
-    if (window.INEMA && typeof window.INEMA.init === 'function') { window.INEMA.init(); }
+    if (window.ARCKHÉ && typeof window.ARCKHÉ.init === 'function') { window.ARCKHÉ.init(); }
     window.addEventListener('DOMContentLoaded', function () {
-      if (window.INEMA && INEMA.registerCheck) {
-        INEMA.registerCheck('modulo-3-2#q1', {
+      if (window.ARCKHÉ && ARCKHÉ.registerCheck) {
+        ARCKHÉ.registerCheck('modulo-3-2#q1', {
           answer: 1,
           explain: {
             0: 'Não: explicar gasta a curiosidade e obriga uma decisão apressada de alguém distraído.',
